@@ -10,9 +10,11 @@ const App = () => (
   <BrowserRouter>
     <div className="app">
       <Switch>
+        {/* Switch renders exactly ONE Route component */}
         <Route exact path="/" component={Landing} />
         <Route path="/search" component={Search} />
         <Route component={FourOhFour} />
+        {/* Order Matters so 404 has to be last */}
       </Switch>
     </div>
   </BrowserRouter>
