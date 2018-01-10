@@ -10,7 +10,7 @@ module.exports = {
   },
   devServer: {
     publicPath: '/public/', //name of the path on the server, not the local output path
-    historyApiFallback: true
+    historyApiFallback: true //if the server doesnt have the /path/information send it down to the client (index.html) to figure it out (BrowserRoute)
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json']
