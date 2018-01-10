@@ -9,7 +9,8 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
-    publicPath: '/public/' //name of the path on the server, not the local output path
+    publicPath: '/public/', //name of the path on the server, not the local output path
+    historyApiFallback: true
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json']
