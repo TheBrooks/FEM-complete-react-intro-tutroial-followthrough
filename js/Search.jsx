@@ -15,7 +15,7 @@ class Search extends React.Component {
     return (
       <div className="search">
         <header>
-          <h1>svideo</h1>
+          <h1>sVideo</h1>
           <input
             onChange={this.handleSearchTermChange}
             value={this.state.searchTerm}
@@ -23,7 +23,14 @@ class Search extends React.Component {
             placeholder="Search"
           />
         </header>
-        <div>{preload.shows.map(show => <ShowCard key={show.imdbID} show={show} />)}</div>
+        <div>
+          {preload.shows
+            .filter(
+              show =>
+                `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
+            )
+            .map(show => <ShowCard key={show.imdbID} show={show} />)}
+        </div>
       </div>
     );
   }
