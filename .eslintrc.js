@@ -12,6 +12,7 @@ module.exports = {
       jsx: true
     }
   },
+  parser: 'babel-eslint',
   rules: {
     'space-before-function-paren': [ERROR, 'never'],
     'eol-last': OFF,
