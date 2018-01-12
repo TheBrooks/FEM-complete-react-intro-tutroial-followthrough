@@ -3,8 +3,8 @@ var OFF = 0,
   ERROR = 2;
 
 module.exports = {
-  extends: ['airbnb', 'prettier', 'prettier/react'],
-  plugins: ['prettier'],
+  extends: ['plugin:flowtype/recommended', 'airbnb', 'prettier', 'prettier/react'],
+  plugins: ['flowtype', 'prettier'],
   parserOptions: {
     ecmaVersion: 2016,
     sourceType: 'module',

@@ -11,7 +11,9 @@
     "watch": "webpack --watch"
   },
   "jest": {
-    "snapshotSerializers": ["jest-serializer-enzyme"]
+    "snapshotSerializers": [
+      "jest-serializer-enzyme"
+    ]
   },
   "dependencies": {
     "axios": "0.16.1",
