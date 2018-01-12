@@ -7,7 +7,7 @@ const renderApp = () => {
 };
 renderApp();
 
-// For Hot Module Replacement - module is only hot on dev build
+// For Hot Module Replacement - module is only 'hot' on dev build
 // anytime App changes, force a call renderApp to redraw
 if (module.hot) {
   module.hot.accept('./App', () => {
