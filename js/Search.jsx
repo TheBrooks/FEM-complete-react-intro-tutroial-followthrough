@@ -1,12 +1,14 @@
 // @flow
 
 import React from 'react';
-import preload from '../data.json';
 import ShowCard from './ShowCard';
 
 class Search extends React.Component {
   state = {
     searchTerm: ''
+  };
+  props: {
+    shows: Array<Show>
   };
 
   handleSearchTermChange = (event: SyntheticKeyboardEvent & { target: HTMLInputElement }) => {
@@ -26,7 +28,7 @@ class Search extends React.Component {
           />
         </header>
         <div>
-          {preload.shows
+          {this.props.shows
             .filter(
               show =>
                 `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
