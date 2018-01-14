@@ -10,7 +10,7 @@ import preload from '../data.json';
 
 class App extends React.Component {
   state = {
-    searchTerm: 'appDefault'
+    searchTerm: ''
   };
   handleSearchTermChange = (event: SyntheticKeyboardEvent & { target: HTMLInputElement }) => {
     this.setState({ searchTerm: event.target.value });
@@ -27,6 +27,9 @@ class App extends React.Component {
       {...props}
     />
   );
+  renderDetails = (props: Object) => (
+    <Details show={preload.shows.find(show => props.match.params.id === show.imdbID)} {...props} />
+  );
   render() {
     const FourOhFour = () => <h1>404</h1>;
     return (
@@ -36,12 +39,7 @@ class App extends React.Component {
             {/* Switch renders exactly ONE Route component */}
             <Route exact path="/" component={this.renderLanding} />
             <Route path="/search" component={this.renderSearch} />
-            <Route
-              path="/details/:id"
-              component={props => {
-                return <Details show={preload.shows.find(show => props.match.params.id === show.imdbID)} {...props} />;
-              }}
-            />
+            <Route path="/details/:id" component={this.renderDetails} />
             <Route component={FourOhFour} />
             {/* Order Matters so 404 has to be last */}
           </Switch>

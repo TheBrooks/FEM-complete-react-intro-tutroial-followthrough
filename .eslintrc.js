@@ -4,7 +4,7 @@ var OFF = 0,
 
 module.exports = {
   extends: ['plugin:flowtype/recommended', 'airbnb', 'prettier', 'prettier/react'],
-  plugins: ['flowtype', 'prettier'],
+  plugins: ['flowtype', 'prettier', 'react'],
   parserOptions: {
     ecmaVersion: 2016,
     sourceType: 'module',
@@ -17,7 +17,8 @@ module.exports = {
     'space-before-function-paren': [ERROR, 'never'],
     'eol-last': OFF,
     'comma-dangle': ['error', { functions: 'never' }],
-    'func-names': [ERROR, 'as-needed']
+    'func-names': [ERROR, 'as-needed'],
+    'react/jsx-no-bind': [ERROR, {}]
   },
   env: {
     es6: true,
