@@ -3,6 +3,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import type { Match } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 import Landing from './Landing';
 import Search from './Search';
 import Details from './Details';
@@ -34,16 +36,18 @@ class App extends React.Component {
     const FourOhFour = () => <h1>404</h1>;
     return (
       <BrowserRouter>
-        <div className="app">
-          <Switch>
-            {/* Switch renders exactly ONE Route component */}
-            <Route exact path="/" component={this.renderLanding} />
-            <Route path="/search" component={this.renderSearch} />
-            <Route path="/details/:id" component={this.renderDetails} />
-            <Route component={FourOhFour} />
-            {/* Order Matters so 404 has to be last */}
-          </Switch>
-        </div>
+        <Provider store={store}>
+          <div className="app">
+            <Switch>
+              {/* Switch renders exactly ONE Route component */}
+              <Route exact path="/" component={this.renderLanding} />
+              <Route path="/search" component={this.renderSearch} />
+              <Route path="/details/:id" component={this.renderDetails} />
+              <Route component={FourOhFour} />
+              {/* Order Matters so 404 has to be last */}
+            </Switch>
+          </div>
+        </Provider>
       </BrowserRouter>
     );
   }
