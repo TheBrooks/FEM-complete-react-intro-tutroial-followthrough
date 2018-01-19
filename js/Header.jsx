@@ -1,55 +1,44 @@
 // @flow
 
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setSearchTerm } from './actionCreators';
 
-class Header extends React.Component {
-  static defaultProps = {
-    showSearch: false,
-    handleSearchTermChange: function noop() {},
-    searchTerm: ''
-  };
-  shouldComponentUpdate(nextProps: { showSearch?: boolean, handleSearchTermChange?: Function, searchTerm?: string }) {
-    if (
-      nextProps.showSearch === this.props.showSearch &&
-      nextProps.handleSearchTermChange === this.props.handleSearchTermChange &&
-      nextProps.searchTerm === this.props.searchTerm
-    ) {
-      return false;
-    }
-    return true;
-  }
-
-  props: { showSearch?: boolean, handleSearchTermChange?: Function, searchTerm?: string };
-
-  render() {
-    let utilSpace;
-    if (this.props.showSearch) {
-      utilSpace = (
-        <input
-          onChange={this.props.handleSearchTermChange}
-          value={this.props.searchTerm}
-          type="text"
-          placeholder="Search"
-        />
-      );
-    } else {
-      utilSpace = (
-        <h2>
-          <Link to="/search">{`< Back`}</Link>
-        </h2>
-      );
-    }
-
-    return (
-      <header>
-        <h1>
-          <Link to="/">sVideo</Link>
-        </h1>
-        {utilSpace}
-      </header>
+const Header = (props: { showSearch?: boolean, handleSearchTermChange: Function, searchTerm: string }) => {
+  let utilSpace;
+  if (props.showSearch) {
+    utilSpace = (
+      <input onChange={props.handleSearchTermChange} value={props.searchTerm} type="text" placeholder="Search" />
+    );
+  } else {
+    utilSpace = (
+      <h2>
+        <Link to="/search">{`< Back`}</Link>
+      </h2>
     );
   }
-}
 
-export default Header;
+  return (
+    <header>
+      <h1>
+        <Link to="/">sVideo</Link>
+      </h1>
+      {utilSpace}
+    </header>
+  );
+};
+
+Header.defaultProps = {
+  showSearch: false
+};
+
+const mapStateToProps = state => ({ searchTerm: state.searchTerm });
+
+const mapDispatchToProps = (dispatch: Function) => ({
+  handleSearchTermChange(event) {
+    dispatch(setSearchTerm(event.target.value));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

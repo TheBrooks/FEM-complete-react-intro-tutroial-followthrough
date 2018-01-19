@@ -11,24 +11,8 @@ import Details from './Details';
 import preload from '../data.json';
 
 class App extends React.Component {
-  state = {
-    searchTerm: ''
-  };
-  handleSearchTermChange = (event: SyntheticKeyboardEvent & { target: HTMLInputElement }) => {
-    this.setState({ searchTerm: event.target.value });
-    event.preventDefault();
-  };
-  renderLanding = (props: Object) => (
-    <Landing searchTerm={this.state.searchTerm} handleSearchTermChange={this.handleSearchTermChange} {...props} />
-  );
-  renderSearch = (props: Object) => (
-    <Search
-      shows={preload.shows}
-      searchTerm={this.state.searchTerm}
-      handleSearchTermChange={this.handleSearchTermChange}
-      {...props}
-    />
-  );
+  renderLanding = (props: Object) => <Landing {...props} />;
+  renderSearch = (props: Object) => <Search shows={preload.shows} {...props} />;
   renderDetails = (props: Object) => (
     <Details show={preload.shows.find(show => props.match.params.id === show.imdbID)} {...props} />
   );
